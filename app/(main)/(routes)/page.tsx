@@ -1,7 +1,11 @@
+import { ModeToggle } from "@/components/mode-toggle";
+import { UserButton } from "@clerk/nextjs";
+
 export default function Home() {
   return (
-    <div className="w-full bg-red-500 text-5xl flex justify-center items-center flex-col">
-      This is a protected route
+    <div className="">
+      <UserButton />
+      <ModeToggle />
     </div>
   );
 }
