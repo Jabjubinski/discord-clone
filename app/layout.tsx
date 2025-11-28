@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { cn } from "@/lib/utils";
 
 const font = Open_Sans({
   variable: "--font-open-sans",
@@ -23,11 +24,11 @@ export default function RootLayout({
   return (
     <ClerkProvider appearance={{ theme: dark }}>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${font.variable} antialiased`}>
+        <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
-            enableSystem
+            enableSystem={false}
             storageKey="discord-theme"
             // disableTransitionOnChange
           >
