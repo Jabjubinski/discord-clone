@@ -1,0 +1,54 @@
+/* wrap everything to avoid global leaks */
+.uploadthing-root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.uploadthing-root input[type="file"] {
+  display: none;
+}
+
+.uploadthing-dropzone {
+  @apply flex flex-col items-center justify-center w-full cursor-pointer gap-3 rounded-lg border border-dashed border-muted-foreground/40 px-6 py-10 transition;
+}
+
+.uploadthing-dropzone:hover {
+  @apply border-muted-foreground bg-muted/40;
+}
+
+.uploadthing-dropzone.dragging {
+  @apply border-blue-500 bg-muted/50;
+}
+
+.uploadthing-icon {
+  @apply h-8 w-8 text-muted-foreground;
+}
+
+.uploadthing-text {
+  @apply text-sm text-muted-foreground text-center;
+}
+
+.uploadthing-preview {
+  @apply relative rounded-lg overflow-hidden w-20 h-20;
+}
+
+.uploadthing-preview img {
+  @apply object-cover w-full h-full rounded-lg;
+}
+
+.uploadthing-preview button {
+  @apply absolute -top-2 -right-2 rounded-full bg-destructive text-destructive-foreground p-1 shadow;
+}
+
+.uploadthing-progress-bar {
+  @apply h-1 rounded-full bg-blue-600 transition-all;
+}
+
+.uploadthing-error {
+  @apply text-red-600 text-xs mt-1;
+}
