@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <ClerkProvider appearance={{ theme: dark }}>
       <html lang="en" suppressHydrationWarning>
-        <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
+        <body className={cn(font.className, "bg-white dark:bg-[#121214]")}>
           <ThemeProvider
             attribute="class"
             enableSystem={true}

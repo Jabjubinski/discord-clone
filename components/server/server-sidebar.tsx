@@ -2,7 +2,8 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { ChannelType } from "@/prisma/generated/prisma/enums";
 import { redirect } from "next/navigation";
-import { includes } from "zod";
+import { ServerHeader } from "./server-header";
+import { Separator } from "../ui/separator";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -50,7 +51,22 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     (member) => member.profileId !== profile.id
   );
 
-  return <div>server Sidebar</div>;
+  if (!server) {
+    return redirect("/");
+  }
+
+  const role = server.members.find(
+    (member) => member.profileId === profile.id
+  )?.role;
+
+  return (
+    <div className="flex  flex-col h-full text-primary dark:bg-[#121214] border-l border-[#222225] rounded-tl-xl bg-[#F2F3F5]">
+      <div className="p-1">
+        <ServerHeader server={server} role={role} />
+      </div>
+      <Separator className="w-full" />
+    </div>
+  );
 };
 
 export default ServerSidebar;
