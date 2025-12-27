@@ -218,19 +218,19 @@ export type ServerOrderByWithRelationInput = {
 
 export type ServerWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  inviteCode?: string
   AND?: Prisma.ServerWhereInput | Prisma.ServerWhereInput[]
   OR?: Prisma.ServerWhereInput[]
   NOT?: Prisma.ServerWhereInput | Prisma.ServerWhereInput[]
   name?: Prisma.StringFilter<"Server"> | string
   imageUrl?: Prisma.StringFilter<"Server"> | string
-  inviteCode?: Prisma.StringFilter<"Server"> | string
   profileId?: Prisma.StringFilter<"Server"> | string
   createdAt?: Prisma.DateTimeFilter<"Server"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Server"> | Date | string
   profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   members?: Prisma.MemberListRelationFilter
   channels?: Prisma.ChannelListRelationFilter
-}, "id">
+}, "id" | "inviteCode">
 
 export type ServerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
