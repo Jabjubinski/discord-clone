@@ -31,7 +31,7 @@ export const NavigationSidebar = async () => {
   return (
     <div className="space-y-4 flex flex-col items-center h-full text-primary w-full dark:bg-[#121214] py-3">
       <NavigationMessages />
-      <div className="h-0.5 bg-zinc-300 w-10 flex-none dark:bg-zinc-700 rounded-  mx-auto" />
+      <div className="h-0.5 bg-zinc-300 w-10 flex-none dark:bg-zinc-700 rounded-xl mx-auto" />
       <ScrollArea className="flex-1 w-full">
         {servers.map((server) => (
           <div key={server.id} className="mb-4">
