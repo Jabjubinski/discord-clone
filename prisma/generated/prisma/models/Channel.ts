@@ -28,7 +28,6 @@ export type ChannelMinAggregateOutputType = {
   id: string | null
   name: string | null
   type: $Enums.ChannelType | null
-  profileId: string | null
   serverId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -38,7 +37,6 @@ export type ChannelMaxAggregateOutputType = {
   id: string | null
   name: string | null
   type: $Enums.ChannelType | null
-  profileId: string | null
   serverId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -48,7 +46,6 @@ export type ChannelCountAggregateOutputType = {
   id: number
   name: number
   type: number
-  profileId: number
   serverId: number
   createdAt: number
   updatedAt: number
@@ -60,7 +57,6 @@ export type ChannelMinAggregateInputType = {
   id?: true
   name?: true
   type?: true
-  profileId?: true
   serverId?: true
   createdAt?: true
   updatedAt?: true
@@ -70,7 +66,6 @@ export type ChannelMaxAggregateInputType = {
   id?: true
   name?: true
   type?: true
-  profileId?: true
   serverId?: true
   createdAt?: true
   updatedAt?: true
@@ -80,7 +75,6 @@ export type ChannelCountAggregateInputType = {
   id?: true
   name?: true
   type?: true
-  profileId?: true
   serverId?: true
   createdAt?: true
   updatedAt?: true
@@ -163,7 +157,6 @@ export type ChannelGroupByOutputType = {
   id: string
   name: string
   type: $Enums.ChannelType
-  profileId: string
   serverId: string
   createdAt: Date
   updatedAt: Date
@@ -194,11 +187,9 @@ export type ChannelWhereInput = {
   id?: Prisma.StringFilter<"Channel"> | string
   name?: Prisma.StringFilter<"Channel"> | string
   type?: Prisma.EnumChannelTypeFilter<"Channel"> | $Enums.ChannelType
-  profileId?: Prisma.StringFilter<"Channel"> | string
   serverId?: Prisma.StringFilter<"Channel"> | string
   createdAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
-  profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   server?: Prisma.XOR<Prisma.ServerScalarRelationFilter, Prisma.ServerWhereInput>
 }
 
@@ -206,11 +197,9 @@ export type ChannelOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  profileId?: Prisma.SortOrder
   serverId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  profile?: Prisma.ProfileOrderByWithRelationInput
   server?: Prisma.ServerOrderByWithRelationInput
 }
 
@@ -221,11 +210,9 @@ export type ChannelWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ChannelWhereInput | Prisma.ChannelWhereInput[]
   name?: Prisma.StringFilter<"Channel"> | string
   type?: Prisma.EnumChannelTypeFilter<"Channel"> | $Enums.ChannelType
-  profileId?: Prisma.StringFilter<"Channel"> | string
   serverId?: Prisma.StringFilter<"Channel"> | string
   createdAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
-  profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   server?: Prisma.XOR<Prisma.ServerScalarRelationFilter, Prisma.ServerWhereInput>
 }, "id">
 
@@ -233,7 +220,6 @@ export type ChannelOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  profileId?: Prisma.SortOrder
   serverId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -249,7 +235,6 @@ export type ChannelScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Channel"> | string
   name?: Prisma.StringWithAggregatesFilter<"Channel"> | string
   type?: Prisma.EnumChannelTypeWithAggregatesFilter<"Channel"> | $Enums.ChannelType
-  profileId?: Prisma.StringWithAggregatesFilter<"Channel"> | string
   serverId?: Prisma.StringWithAggregatesFilter<"Channel"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Channel"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Channel"> | Date | string
@@ -261,7 +246,6 @@ export type ChannelCreateInput = {
   type?: $Enums.ChannelType
   createdAt?: Date | string
   updatedAt?: Date | string
-  profile: Prisma.ProfileCreateNestedOneWithoutChannelsInput
   server: Prisma.ServerCreateNestedOneWithoutChannelsInput
 }
 
@@ -269,7 +253,6 @@ export type ChannelUncheckedCreateInput = {
   id?: string
   name: string
   type?: $Enums.ChannelType
-  profileId: string
   serverId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -280,14 +263,12 @@ export type ChannelUpdateInput = {
   type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.ProfileUpdateOneRequiredWithoutChannelsNestedInput
   server?: Prisma.ServerUpdateOneRequiredWithoutChannelsNestedInput
 }
 
 export type ChannelUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
-  profileId?: Prisma.StringFieldUpdateOperationsInput | string
   serverId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -297,7 +278,6 @@ export type ChannelCreateManyInput = {
   id?: string
   name: string
   type?: $Enums.ChannelType
-  profileId: string
   serverId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -313,7 +293,6 @@ export type ChannelUpdateManyMutationInput = {
 export type ChannelUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
-  profileId?: Prisma.StringFieldUpdateOperationsInput | string
   serverId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -333,7 +312,6 @@ export type ChannelCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  profileId?: Prisma.SortOrder
   serverId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -343,7 +321,6 @@ export type ChannelMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  profileId?: Prisma.SortOrder
   serverId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -353,52 +330,9 @@ export type ChannelMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  profileId?: Prisma.SortOrder
   serverId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type ChannelCreateNestedManyWithoutProfileInput = {
-  create?: Prisma.XOR<Prisma.ChannelCreateWithoutProfileInput, Prisma.ChannelUncheckedCreateWithoutProfileInput> | Prisma.ChannelCreateWithoutProfileInput[] | Prisma.ChannelUncheckedCreateWithoutProfileInput[]
-  connectOrCreate?: Prisma.ChannelCreateOrConnectWithoutProfileInput | Prisma.ChannelCreateOrConnectWithoutProfileInput[]
-  createMany?: Prisma.ChannelCreateManyProfileInputEnvelope
-  connect?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-}
-
-export type ChannelUncheckedCreateNestedManyWithoutProfileInput = {
-  create?: Prisma.XOR<Prisma.ChannelCreateWithoutProfileInput, Prisma.ChannelUncheckedCreateWithoutProfileInput> | Prisma.ChannelCreateWithoutProfileInput[] | Prisma.ChannelUncheckedCreateWithoutProfileInput[]
-  connectOrCreate?: Prisma.ChannelCreateOrConnectWithoutProfileInput | Prisma.ChannelCreateOrConnectWithoutProfileInput[]
-  createMany?: Prisma.ChannelCreateManyProfileInputEnvelope
-  connect?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-}
-
-export type ChannelUpdateManyWithoutProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.ChannelCreateWithoutProfileInput, Prisma.ChannelUncheckedCreateWithoutProfileInput> | Prisma.ChannelCreateWithoutProfileInput[] | Prisma.ChannelUncheckedCreateWithoutProfileInput[]
-  connectOrCreate?: Prisma.ChannelCreateOrConnectWithoutProfileInput | Prisma.ChannelCreateOrConnectWithoutProfileInput[]
-  upsert?: Prisma.ChannelUpsertWithWhereUniqueWithoutProfileInput | Prisma.ChannelUpsertWithWhereUniqueWithoutProfileInput[]
-  createMany?: Prisma.ChannelCreateManyProfileInputEnvelope
-  set?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-  disconnect?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-  delete?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-  connect?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-  update?: Prisma.ChannelUpdateWithWhereUniqueWithoutProfileInput | Prisma.ChannelUpdateWithWhereUniqueWithoutProfileInput[]
-  updateMany?: Prisma.ChannelUpdateManyWithWhereWithoutProfileInput | Prisma.ChannelUpdateManyWithWhereWithoutProfileInput[]
-  deleteMany?: Prisma.ChannelScalarWhereInput | Prisma.ChannelScalarWhereInput[]
-}
-
-export type ChannelUncheckedUpdateManyWithoutProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.ChannelCreateWithoutProfileInput, Prisma.ChannelUncheckedCreateWithoutProfileInput> | Prisma.ChannelCreateWithoutProfileInput[] | Prisma.ChannelUncheckedCreateWithoutProfileInput[]
-  connectOrCreate?: Prisma.ChannelCreateOrConnectWithoutProfileInput | Prisma.ChannelCreateOrConnectWithoutProfileInput[]
-  upsert?: Prisma.ChannelUpsertWithWhereUniqueWithoutProfileInput | Prisma.ChannelUpsertWithWhereUniqueWithoutProfileInput[]
-  createMany?: Prisma.ChannelCreateManyProfileInputEnvelope
-  set?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-  disconnect?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-  delete?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-  connect?: Prisma.ChannelWhereUniqueInput | Prisma.ChannelWhereUniqueInput[]
-  update?: Prisma.ChannelUpdateWithWhereUniqueWithoutProfileInput | Prisma.ChannelUpdateWithWhereUniqueWithoutProfileInput[]
-  updateMany?: Prisma.ChannelUpdateManyWithWhereWithoutProfileInput | Prisma.ChannelUpdateManyWithWhereWithoutProfileInput[]
-  deleteMany?: Prisma.ChannelScalarWhereInput | Prisma.ChannelScalarWhereInput[]
 }
 
 export type ChannelCreateNestedManyWithoutServerInput = {
@@ -447,76 +381,18 @@ export type EnumChannelTypeFieldUpdateOperationsInput = {
   set?: $Enums.ChannelType
 }
 
-export type ChannelCreateWithoutProfileInput = {
-  id?: string
-  name: string
-  type?: $Enums.ChannelType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  server: Prisma.ServerCreateNestedOneWithoutChannelsInput
-}
-
-export type ChannelUncheckedCreateWithoutProfileInput = {
-  id?: string
-  name: string
-  type?: $Enums.ChannelType
-  serverId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type ChannelCreateOrConnectWithoutProfileInput = {
-  where: Prisma.ChannelWhereUniqueInput
-  create: Prisma.XOR<Prisma.ChannelCreateWithoutProfileInput, Prisma.ChannelUncheckedCreateWithoutProfileInput>
-}
-
-export type ChannelCreateManyProfileInputEnvelope = {
-  data: Prisma.ChannelCreateManyProfileInput | Prisma.ChannelCreateManyProfileInput[]
-}
-
-export type ChannelUpsertWithWhereUniqueWithoutProfileInput = {
-  where: Prisma.ChannelWhereUniqueInput
-  update: Prisma.XOR<Prisma.ChannelUpdateWithoutProfileInput, Prisma.ChannelUncheckedUpdateWithoutProfileInput>
-  create: Prisma.XOR<Prisma.ChannelCreateWithoutProfileInput, Prisma.ChannelUncheckedCreateWithoutProfileInput>
-}
-
-export type ChannelUpdateWithWhereUniqueWithoutProfileInput = {
-  where: Prisma.ChannelWhereUniqueInput
-  data: Prisma.XOR<Prisma.ChannelUpdateWithoutProfileInput, Prisma.ChannelUncheckedUpdateWithoutProfileInput>
-}
-
-export type ChannelUpdateManyWithWhereWithoutProfileInput = {
-  where: Prisma.ChannelScalarWhereInput
-  data: Prisma.XOR<Prisma.ChannelUpdateManyMutationInput, Prisma.ChannelUncheckedUpdateManyWithoutProfileInput>
-}
-
-export type ChannelScalarWhereInput = {
-  AND?: Prisma.ChannelScalarWhereInput | Prisma.ChannelScalarWhereInput[]
-  OR?: Prisma.ChannelScalarWhereInput[]
-  NOT?: Prisma.ChannelScalarWhereInput | Prisma.ChannelScalarWhereInput[]
-  id?: Prisma.StringFilter<"Channel"> | string
-  name?: Prisma.StringFilter<"Channel"> | string
-  type?: Prisma.EnumChannelTypeFilter<"Channel"> | $Enums.ChannelType
-  profileId?: Prisma.StringFilter<"Channel"> | string
-  serverId?: Prisma.StringFilter<"Channel"> | string
-  createdAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
-}
-
 export type ChannelCreateWithoutServerInput = {
   id?: string
   name: string
   type?: $Enums.ChannelType
   createdAt?: Date | string
   updatedAt?: Date | string
-  profile: Prisma.ProfileCreateNestedOneWithoutChannelsInput
 }
 
 export type ChannelUncheckedCreateWithoutServerInput = {
   id?: string
   name: string
   type?: $Enums.ChannelType
-  profileId: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -546,44 +422,22 @@ export type ChannelUpdateManyWithWhereWithoutServerInput = {
   data: Prisma.XOR<Prisma.ChannelUpdateManyMutationInput, Prisma.ChannelUncheckedUpdateManyWithoutServerInput>
 }
 
-export type ChannelCreateManyProfileInput = {
-  id?: string
-  name: string
-  type?: $Enums.ChannelType
-  serverId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type ChannelUpdateWithoutProfileInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  server?: Prisma.ServerUpdateOneRequiredWithoutChannelsNestedInput
-}
-
-export type ChannelUncheckedUpdateWithoutProfileInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
-  serverId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ChannelUncheckedUpdateManyWithoutProfileInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
-  serverId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type ChannelScalarWhereInput = {
+  AND?: Prisma.ChannelScalarWhereInput | Prisma.ChannelScalarWhereInput[]
+  OR?: Prisma.ChannelScalarWhereInput[]
+  NOT?: Prisma.ChannelScalarWhereInput | Prisma.ChannelScalarWhereInput[]
+  id?: Prisma.StringFilter<"Channel"> | string
+  name?: Prisma.StringFilter<"Channel"> | string
+  type?: Prisma.EnumChannelTypeFilter<"Channel"> | $Enums.ChannelType
+  serverId?: Prisma.StringFilter<"Channel"> | string
+  createdAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
 }
 
 export type ChannelCreateManyServerInput = {
   id?: string
   name: string
   type?: $Enums.ChannelType
-  profileId: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -593,13 +447,11 @@ export type ChannelUpdateWithoutServerInput = {
   type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.ProfileUpdateOneRequiredWithoutChannelsNestedInput
 }
 
 export type ChannelUncheckedUpdateWithoutServerInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
-  profileId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -607,7 +459,6 @@ export type ChannelUncheckedUpdateWithoutServerInput = {
 export type ChannelUncheckedUpdateManyWithoutServerInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumChannelTypeFieldUpdateOperationsInput | $Enums.ChannelType
-  profileId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -618,11 +469,9 @@ export type ChannelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   type?: boolean
-  profileId?: boolean
   serverId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
   server?: boolean | Prisma.ServerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["channel"]>
 
@@ -632,29 +481,25 @@ export type ChannelSelectScalar = {
   id?: boolean
   name?: boolean
   type?: boolean
-  profileId?: boolean
   serverId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ChannelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "profileId" | "serverId" | "createdAt" | "updatedAt", ExtArgs["result"]["channel"]>
+export type ChannelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "serverId" | "createdAt" | "updatedAt", ExtArgs["result"]["channel"]>
 export type ChannelInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
   server?: boolean | Prisma.ServerDefaultArgs<ExtArgs>
 }
 
 export type $ChannelPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Channel"
   objects: {
-    profile: Prisma.$ProfilePayload<ExtArgs>
     server: Prisma.$ServerPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     type: $Enums.ChannelType
-    profileId: string
     serverId: string
     createdAt: Date
     updatedAt: Date
@@ -1021,7 +866,6 @@ readonly fields: ChannelFieldRefs;
  */
 export interface Prisma__ChannelClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  profile<T extends Prisma.ProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   server<T extends Prisma.ServerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServerDefaultArgs<ExtArgs>>): Prisma.Prisma__ServerClient<runtime.Types.Result.GetResult<Prisma.$ServerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1055,7 +899,6 @@ export interface ChannelFieldRefs {
   readonly id: Prisma.FieldRef<"Channel", 'String'>
   readonly name: Prisma.FieldRef<"Channel", 'String'>
   readonly type: Prisma.FieldRef<"Channel", 'ChannelType'>
-  readonly profileId: Prisma.FieldRef<"Channel", 'String'>
   readonly serverId: Prisma.FieldRef<"Channel", 'String'>
   readonly createdAt: Prisma.FieldRef<"Channel", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Channel", 'DateTime'>

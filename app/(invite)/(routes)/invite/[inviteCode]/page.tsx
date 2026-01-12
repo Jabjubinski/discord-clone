@@ -13,7 +13,7 @@ const InviteCodePage = async ({ params }: InviteCodePageProps) => {
   const profile = await currentProfile();
 
   if (!profile) {
-    return <RedirectToSignIn />;
+    return "/sign-in";
   }
 
   const { inviteCode } = await params;

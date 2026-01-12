@@ -16,11 +16,11 @@ model Profile {
   userId    String @unique
   name      String
   imageUrl  String
-  email     String
+  email     String @unique
 
   servers   Server[]
   members   Member[]
-  channels  Channel[]
+  // channels  Channel[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -35,6 +35,7 @@ model Server {
 
   profileId  String @db.ObjectId
   profile    Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  
   members    Member[]
   channels   Channel[]
 
@@ -58,12 +59,14 @@ model Member {
 
   profileId String @db.ObjectId
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  
   serverId String @db.ObjectId
   server Server @relation(fields: [serverId], references: [id], onDelete: Cascade )
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([profileId, serverId])
   @@index([profileId])
   @@index([serverId])
 }
@@ -81,8 +84,8 @@ model Channel {
   name String
   type ChannelType @default(TEXT)
 
-  profileId String @db.ObjectId
-  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  // profileId String @db.ObjectId
+  // profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   serverId String @db.ObjectId
   server Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
@@ -90,6 +93,6 @@ model Channel {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([profileId])
+  // @@index([profileId])
   @@index([serverId])
 }

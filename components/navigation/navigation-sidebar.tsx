@@ -10,6 +10,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import NavigationItem from "@/components/navigation/navigation-item";
 import { ModeToggle } from "../mode-toggle";
 import { NavigationMessages } from "./navigation-messages";
+import { SignOutButton } from "@clerk/nextjs";
+import { UserButtonWrapper } from "../user-button-wrapper";
 
 export const NavigationSidebar = async () => {
   const profile = await currentProfile();
@@ -49,13 +51,7 @@ export const NavigationSidebar = async () => {
         <NavigationAction />
 
         {/* <ModeToggle /> */}
-        <UserButton
-          appearance={{
-            elements: {
-              avatarBox: "h-[48px] w-[48px]",
-            },
-          }}
-        />
+        <UserButtonWrapper />
       </div>
     </div>
   );

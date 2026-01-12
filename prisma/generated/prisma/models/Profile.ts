@@ -200,7 +200,6 @@ export type ProfileWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   servers?: Prisma.ServerListRelationFilter
   members?: Prisma.MemberListRelationFilter
-  channels?: Prisma.ChannelListRelationFilter
 }
 
 export type ProfileOrderByWithRelationInput = {
@@ -213,24 +212,22 @@ export type ProfileOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   servers?: Prisma.ServerOrderByRelationAggregateInput
   members?: Prisma.MemberOrderByRelationAggregateInput
-  channels?: Prisma.ChannelOrderByRelationAggregateInput
 }
 
 export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   userId?: string
+  email?: string
   AND?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
   OR?: Prisma.ProfileWhereInput[]
   NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
   name?: Prisma.StringFilter<"Profile"> | string
   imageUrl?: Prisma.StringFilter<"Profile"> | string
-  email?: Prisma.StringFilter<"Profile"> | string
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   servers?: Prisma.ServerListRelationFilter
   members?: Prisma.MemberListRelationFilter
-  channels?: Prisma.ChannelListRelationFilter
-}, "id" | "userId">
+}, "id" | "userId" | "email">
 
 export type ProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -268,7 +265,6 @@ export type ProfileCreateInput = {
   updatedAt?: Date | string
   servers?: Prisma.ServerCreateNestedManyWithoutProfileInput
   members?: Prisma.MemberCreateNestedManyWithoutProfileInput
-  channels?: Prisma.ChannelCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateInput = {
@@ -281,7 +277,6 @@ export type ProfileUncheckedCreateInput = {
   updatedAt?: Date | string
   servers?: Prisma.ServerUncheckedCreateNestedManyWithoutProfileInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutProfileInput
-  channels?: Prisma.ChannelUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUpdateInput = {
@@ -293,7 +288,6 @@ export type ProfileUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   servers?: Prisma.ServerUpdateManyWithoutProfileNestedInput
   members?: Prisma.MemberUpdateManyWithoutProfileNestedInput
-  channels?: Prisma.ChannelUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateInput = {
@@ -305,7 +299,6 @@ export type ProfileUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   servers?: Prisma.ServerUncheckedUpdateManyWithoutProfileNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutProfileNestedInput
-  channels?: Prisma.ChannelUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateManyInput = {
@@ -407,20 +400,6 @@ export type ProfileUpdateOneRequiredWithoutMembersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutMembersInput, Prisma.ProfileUpdateWithoutMembersInput>, Prisma.ProfileUncheckedUpdateWithoutMembersInput>
 }
 
-export type ProfileCreateNestedOneWithoutChannelsInput = {
-  create?: Prisma.XOR<Prisma.ProfileCreateWithoutChannelsInput, Prisma.ProfileUncheckedCreateWithoutChannelsInput>
-  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutChannelsInput
-  connect?: Prisma.ProfileWhereUniqueInput
-}
-
-export type ProfileUpdateOneRequiredWithoutChannelsNestedInput = {
-  create?: Prisma.XOR<Prisma.ProfileCreateWithoutChannelsInput, Prisma.ProfileUncheckedCreateWithoutChannelsInput>
-  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutChannelsInput
-  upsert?: Prisma.ProfileUpsertWithoutChannelsInput
-  connect?: Prisma.ProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutChannelsInput, Prisma.ProfileUpdateWithoutChannelsInput>, Prisma.ProfileUncheckedUpdateWithoutChannelsInput>
-}
-
 export type ProfileCreateWithoutServersInput = {
   id?: string
   userId: string
@@ -430,7 +409,6 @@ export type ProfileCreateWithoutServersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.MemberCreateNestedManyWithoutProfileInput
-  channels?: Prisma.ChannelCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutServersInput = {
@@ -442,7 +420,6 @@ export type ProfileUncheckedCreateWithoutServersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutProfileInput
-  channels?: Prisma.ChannelUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutServersInput = {
@@ -469,7 +446,6 @@ export type ProfileUpdateWithoutServersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.MemberUpdateManyWithoutProfileNestedInput
-  channels?: Prisma.ChannelUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutServersInput = {
@@ -480,7 +456,6 @@ export type ProfileUncheckedUpdateWithoutServersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.MemberUncheckedUpdateManyWithoutProfileNestedInput
-  channels?: Prisma.ChannelUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateWithoutMembersInput = {
@@ -492,7 +467,6 @@ export type ProfileCreateWithoutMembersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   servers?: Prisma.ServerCreateNestedManyWithoutProfileInput
-  channels?: Prisma.ChannelCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutMembersInput = {
@@ -504,7 +478,6 @@ export type ProfileUncheckedCreateWithoutMembersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   servers?: Prisma.ServerUncheckedCreateNestedManyWithoutProfileInput
-  channels?: Prisma.ChannelUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutMembersInput = {
@@ -531,7 +504,6 @@ export type ProfileUpdateWithoutMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   servers?: Prisma.ServerUpdateManyWithoutProfileNestedInput
-  channels?: Prisma.ChannelUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutMembersInput = {
@@ -542,69 +514,6 @@ export type ProfileUncheckedUpdateWithoutMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   servers?: Prisma.ServerUncheckedUpdateManyWithoutProfileNestedInput
-  channels?: Prisma.ChannelUncheckedUpdateManyWithoutProfileNestedInput
-}
-
-export type ProfileCreateWithoutChannelsInput = {
-  id?: string
-  userId: string
-  name: string
-  imageUrl: string
-  email: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  servers?: Prisma.ServerCreateNestedManyWithoutProfileInput
-  members?: Prisma.MemberCreateNestedManyWithoutProfileInput
-}
-
-export type ProfileUncheckedCreateWithoutChannelsInput = {
-  id?: string
-  userId: string
-  name: string
-  imageUrl: string
-  email: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  servers?: Prisma.ServerUncheckedCreateNestedManyWithoutProfileInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutProfileInput
-}
-
-export type ProfileCreateOrConnectWithoutChannelsInput = {
-  where: Prisma.ProfileWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProfileCreateWithoutChannelsInput, Prisma.ProfileUncheckedCreateWithoutChannelsInput>
-}
-
-export type ProfileUpsertWithoutChannelsInput = {
-  update: Prisma.XOR<Prisma.ProfileUpdateWithoutChannelsInput, Prisma.ProfileUncheckedUpdateWithoutChannelsInput>
-  create: Prisma.XOR<Prisma.ProfileCreateWithoutChannelsInput, Prisma.ProfileUncheckedCreateWithoutChannelsInput>
-  where?: Prisma.ProfileWhereInput
-}
-
-export type ProfileUpdateToOneWithWhereWithoutChannelsInput = {
-  where?: Prisma.ProfileWhereInput
-  data: Prisma.XOR<Prisma.ProfileUpdateWithoutChannelsInput, Prisma.ProfileUncheckedUpdateWithoutChannelsInput>
-}
-
-export type ProfileUpdateWithoutChannelsInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servers?: Prisma.ServerUpdateManyWithoutProfileNestedInput
-  members?: Prisma.MemberUpdateManyWithoutProfileNestedInput
-}
-
-export type ProfileUncheckedUpdateWithoutChannelsInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  servers?: Prisma.ServerUncheckedUpdateManyWithoutProfileNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 
@@ -615,13 +524,11 @@ export type ProfileUncheckedUpdateWithoutChannelsInput = {
 export type ProfileCountOutputType = {
   servers: number
   members: number
-  channels: number
 }
 
 export type ProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   servers?: boolean | ProfileCountOutputTypeCountServersArgs
   members?: boolean | ProfileCountOutputTypeCountMembersArgs
-  channels?: boolean | ProfileCountOutputTypeCountChannelsArgs
 }
 
 /**
@@ -648,13 +555,6 @@ export type ProfileCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types
   where?: Prisma.MemberWhereInput
 }
 
-/**
- * ProfileCountOutputType without action
- */
-export type ProfileCountOutputTypeCountChannelsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ChannelWhereInput
-}
-
 
 export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -666,7 +566,6 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   updatedAt?: boolean
   servers?: boolean | Prisma.Profile$serversArgs<ExtArgs>
   members?: boolean | Prisma.Profile$membersArgs<ExtArgs>
-  channels?: boolean | Prisma.Profile$channelsArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
@@ -686,7 +585,6 @@ export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   servers?: boolean | Prisma.Profile$serversArgs<ExtArgs>
   members?: boolean | Prisma.Profile$membersArgs<ExtArgs>
-  channels?: boolean | Prisma.Profile$channelsArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -695,7 +593,6 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     servers: Prisma.$ServerPayload<ExtArgs>[]
     members: Prisma.$MemberPayload<ExtArgs>[]
-    channels: Prisma.$ChannelPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1070,7 +967,6 @@ export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   servers<T extends Prisma.Profile$serversArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$serversArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   members<T extends Prisma.Profile$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  channels<T extends Prisma.Profile$channelsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$channelsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChannelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1522,30 +1418,6 @@ export type Profile$membersArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.MemberScalarFieldEnum | Prisma.MemberScalarFieldEnum[]
-}
-
-/**
- * Profile.channels
- */
-export type Profile$channelsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Channel
-   */
-  select?: Prisma.ChannelSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Channel
-   */
-  omit?: Prisma.ChannelOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ChannelInclude<ExtArgs> | null
-  where?: Prisma.ChannelWhereInput
-  orderBy?: Prisma.ChannelOrderByWithRelationInput | Prisma.ChannelOrderByWithRelationInput[]
-  cursor?: Prisma.ChannelWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ChannelScalarFieldEnum | Prisma.ChannelScalarFieldEnum[]
 }
 
 /**

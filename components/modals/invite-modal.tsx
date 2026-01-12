@@ -63,13 +63,12 @@ export const InviteModal = () => {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input className="pl-9" placeholder="Search friends" />
           </div>
-          <div>FRIENDS LIST HERE</div>
         </DialogHeader>
 
         <div className="p-6">
           <Label>Or send a server invite link to a friend</Label>
           <div className="flex items-center mt-2 gap-x-2 relative">
-            <Input value={inviteUrl} disabled={isLoading} />
+            <Input value={inviteUrl} disabled={isLoading} readOnly />
             <Button onClick={onCopy} size="icon-sm" disabled={isLoading}>
               {copied ? <CheckIcon /> : <Copy />}
             </Button>

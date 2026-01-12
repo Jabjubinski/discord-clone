@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         hostname: "642wjyytlj.ufs.sh",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+      },
     ],
   },
 };
