@@ -57,7 +57,10 @@ export const InviteModal = () => {
       <DialogContent className="p-0 overflow-hidden sm:max-w-lg">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-2xl font-semibold text-center">
-            Invite Friends to "ADD SERVER NAME LATER"
+            Invite Friends to{" "}
+            <span className="font-semibold text-indigo-500">
+              {server?.name}
+            </span>
           </DialogTitle>
           <div className="flex flex-row relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -85,9 +88,9 @@ export const InviteModal = () => {
           </Button>
           <div className="text-muted-foreground text-[10px] pt-3">
             Your invite link expires in 7 days.
-            <span className="ml-1.5 text-blue-400 cursor-pointer hover:border-b border-blue-400">
+            {/* <span className="ml-1.5 text-blue-400 cursor-pointer hover:border-b border-blue-400">
               Edit invite link
-            </span>
+            </span> */}
           </div>
         </div>
       </DialogContent>

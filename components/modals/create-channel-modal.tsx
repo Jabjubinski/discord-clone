@@ -1,14 +1,15 @@
 "use client";
 
+import qs from "querystring";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { db } from "@/lib/db";
 
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -23,31 +24,41 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FileUpload } from "@/components/file-upload";
-import { useRouter } from "next/navigation";
-
+import { useParams, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ChannelType } from "@/prisma/generated/prisma/enums";
 
 const formSchema = z.object({
-  name: z.string().min(1, {
-    error: "Server name is required.",
-  }),
-  imageUrl: z.string().min(1, {
-    error: "Server image is required.",
-  }),
+  name: z
+    .string()
+    .min(1, {
+      error: "Channel name is required.",
+    })
+    .refine((name) => name !== "general", {
+      error: "Channel name cannot be 'general'",
+    }),
+  type: z.enum(ChannelType),
 });
 
-export const CreateServerModal = () => {
+export const CreateChannelModal = () => {
+  const params = useParams();
   const { isOpen, onClose, type } = useModal();
   const router = useRouter();
 
-  const isModalOpen = isOpen && type === "createServer";
+  const isModalOpen = isOpen && type === "createChannel";
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      imageUrl: "",
+      type: ChannelType.TEXT,
     },
   });
 
@@ -55,7 +66,13 @@ export const CreateServerModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post("/api/servers", values);
+      const query = qs.stringify({
+        serverId: params?.serverId,
+      });
+
+      const url = `/api/channels/?${query}`;
+
+      await axios.post(url, values);
 
       form.reset();
       router.refresh();
@@ -75,48 +92,25 @@ export const CreateServerModal = () => {
       <DialogContent className="p-0 overflow-hidden sm:max-w-lg">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-2xl font-semibold text-center">
-            Customize your server
+            Create Channel
           </DialogTitle>
-          <DialogDescription className="text-center text-muted-foreground">
-            Give your server a personality with a name and an image. You can
-            always change it later.
-          </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="px-6 space-y-8">
-              <div className="flex justify-center">
-                <FormField
-                  control={form.control}
-                  name="imageUrl"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <FileUpload
-                          endpoint="serverImage"
-                          value={field.value}
-                          onChange={field.onChange}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs font-semibold uppercase text-muted-foreground">
-                      Server name
+                      Channel name
                     </FormLabel>
                     <FormControl>
                       <Input
                         disabled={isLoading}
-                        placeholder="Enter server name"
+                        placeholder="Enter Channel name"
                         {...field}
                       />
                     </FormControl>
@@ -124,6 +118,41 @@ export const CreateServerModal = () => {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-semibold uppercase text-muted-foreground">
+                      Channel type
+                    </FormLabel>
+
+                    <Select
+                      disabled={isLoading}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl className="w-full">
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a channel type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {Object.values(ChannelType).map((type) => (
+                          <SelectItem
+                            key={type}
+                            value={type}
+                            className="capitalize"
+                          >
+                            {type.toLowerCase()}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              ></FormField>
             </div>
 
             <DialogFooter className="px-6 py-4 bg-muted/50">
